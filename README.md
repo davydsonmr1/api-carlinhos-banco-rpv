@@ -1,5 +1,4 @@
-# API de Gerenciamento de Arquivos (Proxy Reverso com S3)
-Esta é a documentação da versão final da API, que implementa um padrão de Proxy Reverso. Nesta arquitetura, o servidor atua como um intermediário seguro, garantindo que a URL do S3 e a localização dos arquivos nunca sejam expostas ao cliente.
+# API de Gerenciamento de Arquivos - RPV
 
 # Funcionalidades
 Upload de Arquivos Privados: A API recebe um arquivo (via POST /enviar), o valida e o armazena como um objeto privado no Amazon S3. O público não tem nenhum acesso direto a ele.
@@ -13,3 +12,15 @@ Segurança (Ocultação de URL): O resultado do "Proxy Reverso" é que o usuári
 Validação na Entrada: Antes de aceitar qualquer upload, a API verifica rigorosamente se o arquivo é de um tipo permitido (PDF, JPG, PNG) e se está abaixo do limite de tamanho (5MB).
 
 Gerenciamento de Banco: A estrutura do banco de dados (como a criação da tabela arquivo) é gerenciada de forma profissional usando migrations do Knex, o que permite controle de versão.
+
+# ALUNOS
+
+* Higor Antônio
+* Davydson Maciel
+* Hugo Garcia
+* Lucas Araújo
+* Gelson Teixeira
+* Fabricio Stievano
+* Maria Julia Castro
+* Larissa Bulho
+* Eduarda Veiga
