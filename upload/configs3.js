@@ -34,7 +34,7 @@ const upload = multer({
     s3: s3Cliente,
     bucket: process.env.AWS_BUCKET_NOME,
     contentType: multerS3.AUTO_CONTENT_TYPE, 
-    // acl: 'public-read',  // <--- REMOVA OU COMENTE ESTA LINHA
+  
     key: (req, file, callback) => {
       crypto.randomBytes(16, (err, hash) => {
         if (err) callback(err);

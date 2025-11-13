@@ -2,10 +2,9 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const crypto = require('crypto');
-
 const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
-require('dotenv').config(); 
 
+require('dotenv').config();
 const upload = require('../upload/configs3');
 const knex = require('../config/conexaoBanco');
 
@@ -17,12 +16,13 @@ const s3Cliente = new S3Client({
   }
 });
 
+
+
 router.post('/enviar', upload.single('file'), async (req, res, next) => {
   try {
     if (!req.file) {
       return res.status(400).json({ erro: 'Nenhum arquivo enviado.' });
     }
-
     const { originalname, key } = req.file; 
     const extensao = path.extname(originalname);
     const novoUuid = crypto.randomUUID();
@@ -53,7 +53,6 @@ router.get('/pegar/:uuid', async (req, res, next) => {
     if (!arquivo) {
       return res.status(404).json({ erro: 'Arquivo não encontrado.' });
     }
-
     const comando = new GetObjectCommand({
       Bucket: process.env.AWS_BUCKET_NOME,
       Key: arquivo.chave_s3,
@@ -74,6 +73,7 @@ router.get('/pegar/:uuid', async (req, res, next) => {
     res.setHeader("Content-Type", contentType);
     res.setHeader("Content-Disposition", `inline; filename="${arquivo.nome}"`); 
     res.send(Buffer.from(buffer));
+ 
 
   } catch (error) {
     console.error('Erro ao buscar arquivo (Knex/S3):', error);
